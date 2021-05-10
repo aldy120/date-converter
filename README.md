@@ -1,2 +1,2 @@
 # date-converter
-Convert datetime string
+A simple tool to convert datetime string to ISO 8601.
