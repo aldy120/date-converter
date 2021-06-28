@@ -4,3 +4,9 @@ input {
     font-size: 20px;
     background-color:beige;
 }
+.fork {
+    position: absolute;
+    top: 0;
+    right: 0;
+    border: 0
+}
