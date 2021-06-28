@@ -23,7 +23,11 @@
     var datetimeInput = document.getElementById("datetime-string")
 
     function updateIsoDatetime() {
-        isoTime = new Date(datetimeInput.value).toISOString()
+        let input = datetimeInput.value
+        if (!isNaN(parseInt(input))) {
+            input = parseInt(input)
+        }
+        isoTime = new Date(input).toISOString()
         document.getElementById("iso-datetime").value = isoTime
     }
     datetimeInput.addEventListener('input', updateIsoDatetime)
