@@ -15,15 +15,19 @@
     <p>
         <label for="datetime-string">Date time:</label>
         <input id="datetime-string" type="text">
+        <button id="copy-datetime">Copy</button>
     </p>
     <p> <label for="iso-datetime">ISO 8601 date time:</label>
         <input id="iso-datetime" type="text">
+        <button id="copy-iso">Copy</button>
     </p>
     <a class="fork" target="_blank" rel="noopener noreferrer" href="https://github.com/aldy120/date-converter"><img loading="lazy" width="149" height="149" src="https://github.blog/wp-content/uploads/2008/12/forkme_right_red_aa0000.png?resize=149%2C149" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
 </body>
 <script>
     var datetimeInput = document.getElementById("datetime-string")
     var nowBtn = document.getElementById("now")
+    var copyDatetime = document.getElementById("copy-datetime")
+    var copyIso = document.getElementById("copy-iso")
 
     function updateIsoDatetime() {
         let input = datetimeInput.value
@@ -38,10 +42,22 @@
         datetimeInput.value = new Date().toISOString()
     }
 
+    function copy(input) {
+        input.select();
+        input.setSelectionRange(0, 99999);
+        document.execCommand("copy");
+    }
+
     datetimeInput.addEventListener('input', updateIsoDatetime)
     nowBtn.addEventListener('click', e => {
         updateNow()
         updateIsoDatetime()
+    })
+    copyDatetime.addEventListener('click', (e) => {
+        copy(e.target.previousSibling.previousSibling)
+    })
+    copyIso.addEventListener('click', (e) => {
+        copy(e.target.previousSibling.previousSibling)
     })
 </script>
 
