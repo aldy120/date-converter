@@ -33,6 +33,15 @@
     var copyDatetime = document.getElementById("copy-datetime")
     var copyIso = document.getElementById("copy-iso")
 
+    function changeIsoInputColorBack() {
+        document.getElementById("iso-datetime").style.backgroundColor = 'beige';
+    }
+
+    function changeIsoInputColor() {
+        document.getElementById("iso-datetime").style.backgroundColor = 'blue';
+        setTimeout(changeIsoInputColorBack, 100)
+    }
+    
     function updateIsoDatetime() {
         let input = datetimeInput.value
         if (!isNaN(Number(input))) {
@@ -40,6 +49,7 @@
         }
         isoTime = new Date(input).toISOString()
         document.getElementById("iso-datetime").value = isoTime
+        changeIsoInputColor()
     }
 
     function updateNow() {
