@@ -21,11 +21,15 @@
         <input id="iso-datetime" type="text">
         <button id="copy-iso">Copy</button>
     </p>
-    <a class="fork" target="_blank" rel="noopener noreferrer" href="https://github.com/aldy120/date-converter"><img loading="lazy" width="149" height="149" src="https://github.blog/wp-content/uploads/2008/12/forkme_right_red_aa0000.png?resize=149%2C149" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
+    <a class="fork" target="_blank" rel="noopener noreferrer" href="https://github.com/aldy120/date-converter"><img
+            loading="lazy" width="149" height="149"
+            src="https://github.blog/wp-content/uploads/2008/12/forkme_right_red_aa0000.png?resize=149%2C149"
+            class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
 </body>
 <script>
     var datetimeInput = document.getElementById("datetime-string")
     var nowBtn = document.getElementById("now")
+
     var copyDatetime = document.getElementById("copy-datetime")
     var copyIso = document.getElementById("copy-iso")
 
@@ -59,6 +63,13 @@
     copyIso.addEventListener('click', (e) => {
         copy(e.target.previousSibling.previousSibling)
     })
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const dateQuerystring = urlParams.get('date');
+    // + in URL is interpret to space
+    datetimeInput.value = dateQuerystring.replace(/ (\d\d\d\d)/, '+$1');
+    updateIsoDatetime();
+
 </script>
 
 </html>
