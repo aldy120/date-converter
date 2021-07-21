@@ -33,6 +33,10 @@
     var copyDatetime = document.getElementById("copy-datetime")
     var copyIso = document.getElementById("copy-iso")
 
+    function removeParenthesisForUtc(s) {
+        return s.replace('(UTC)', 'UTC');
+    }
+
     function changeIsoInputColorBack() {
         document.getElementById("iso-datetime").style.backgroundColor = 'beige';
     }
@@ -47,7 +51,8 @@
         if (!isNaN(Number(input))) {
             input = parseInt(input)
         }
-        isoTime = new Date(input).toISOString()
+        input = removeParenthesisForUtc(input);
+        const isoTime = new Date(input).toISOString();
         document.getElementById("iso-datetime").value = isoTime
         changeIsoInputColor()
     }
