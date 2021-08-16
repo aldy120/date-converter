@@ -34,7 +34,7 @@
     var copyIso = document.getElementById("copy-iso")
 
     function removeParenthesisForUtc(s) {
-        return s.replace('(UTC)', 'UTC');
+        return s.toString().replace('(UTC)', 'UTC');
     }
 
     function changeIsoInputColorBack() {
@@ -51,7 +51,10 @@
         if (!isNaN(Number(input))) {
             input = parseInt(input)
         }
-        input = removeParenthesisForUtc(input);
+        input = removeParenthesisForUtc(input.toString());
+        if (!isNaN(Number(input))) {
+            input = parseInt(input)
+        }
         const isoTime = new Date(input).toISOString();
         document.getElementById("iso-datetime").value = isoTime
         changeIsoInputColor()
@@ -80,7 +83,7 @@
     })
 
     const urlParams = new URLSearchParams(window.location.search);
-    const dateQuerystring = urlParams.get('date');
+    const dateQuerystring = urlParams.get('date') || '';
     // + in URL is interpret to space
     datetimeInput.value = dateQuerystring.replace(/ (\d\d\d\d)/, '+$1');
     updateIsoDatetime();
